@@ -1,0 +1,40 @@
+{% extends "base.html" %} 
+
+{% block title %}
+    Quotes 
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        {% if quote_list %}
+            {% for quote in quote_list %}
+                <div class="d-flex justify-content-start align-items-center mb-3" style="min-height: 20vh;">
+                    <div class="p-3 bg-light text-dark">
+                        <div class="my_author_container"> 
+                            <p> <strong> Fullname: </strong> {{ quote.author.fullname }}   <a href="{% url 'author_detail' author_id=quote.author.id %}" >(About)</a></p>
+                        </div>
+                        <div class="my_quote_container"> 
+                            <p> <strong>Quote: </strong> <em>{{ quote.quote }} </em> </p>
+                        </div>
+                        <div class="my_tag_container"> 
+                            <p> <strong>Tags: </strong>
+                                {% if quote.tag.all %}
+                                    {% for tag in quote.tag.all %}
+                                        {{ tag }}
+                                        {% if not forloop.last %}, {% endif %}
+                                    {% endfor %}
+                                {% else %}
+                                    No tags associated with this quote.
+                                {% endif %}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <div>
+                <h4>Цитати не знайдені!</h4>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

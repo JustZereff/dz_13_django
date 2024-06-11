@@ -1,0 +1,39 @@
+{% extends "base.html" %} 
+
+{% block title %}
+    Authors 
+{% endblock %}
+
+{% block content %}
+    <div class="row justify-content-center align-items-center">
+        {% if author_list %}
+            {% for author in author_list %}
+                <div class="row justify-content-center align-items-center">
+                    <div class="container-xl">
+                        <div class="h5" >
+                        <p class="author-name" onclick="showAuthorInfo('{{ author.id }}')"> <ins> {{ author.fullname }} </ins> </p>
+                        </div>
+                        <div id="author-info-{{ author.id }}" class="author-info" style="display: none;">
+                            <p> born date: {{ author.born_date }} </p>
+                            <p> born location: {{ author.born_location }} </p>
+                            <p> description: {{ author.description }} </p> <br>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <div class="row justify-content-center align-items-center">
+                <div >
+                    Авторів не знайдено! 
+                </div>
+            </div>
+        {% endif %}
+    </div>
+
+    <script>
+        function showAuthorInfo(authorId) {
+            var info = document.getElementById('author-info-' + authorId);
+            info.style.display = (info.style.display === "none") ? "block" : "none";
+        }
+    </script>
+{% endblock %}

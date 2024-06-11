@@ -1,0 +1,24 @@
+{% extends "base.html" %} 
+
+{% block title %}
+    Add author
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center align-items-center">
+        <div class="col-md-6">
+            <div class="col-md-12">
+                <h3 class="row justify-content-center align-items-center">Add author</h3>
+                <div class="content_block" style="width: 340px;">
+                    <form method="post">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <button type="submit">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

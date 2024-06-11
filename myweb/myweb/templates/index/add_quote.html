@@ -1,0 +1,39 @@
+{% extends "base.html" %} 
+
+{% block title %}
+    Add quote 
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center align-items-center">
+        <div class="col-md-6">
+            <div class="col-md-12">
+                <h3 class="row justify-content-center align-items-center">Add Quote</h3>
+                <a class="row justify-content-center align-items-center" href='{% url "add_author" %}'>To add a quote you must add the author</a>
+                    <form method="post">
+                        {% csrf_token %}
+                        
+                        <div class="form-group">
+                            {{ form.quote.label_tag }}
+                            {{ form.quote }}
+                        </div>
+                        <div class="form-group">
+                            {{ form.author.label_tag }}
+                            {{ form.author }}
+                        </div>
+                        <div class="form-group">
+                            {{ form.tag.label_tag }}
+                            {{ form.tag }}
+                        </div>
+                        <div class="form-group">
+                            <label for="{{ form.tag_custom.id_for_label }}">Custom Tag</label>
+                            {{ form.tag_custom }}
+                        </div>
+                        <button type="submit">Create</button>
+                    </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
